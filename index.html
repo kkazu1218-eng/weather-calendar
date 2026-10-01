@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>天気カレンダー</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="head-main">
+    <h1>天気カレンダー</h1>
+    <button id="place" class="link" type="button"></button>
+  </div>
+  <div class="head-sub">
+    <span id="updated"></span>
+    <button id="refresh" type="button">今すぐ更新</button>
+    <button id="open-settings" type="button">地域設定</button>
+  </div>
+</header>
+
+<nav class="month-nav">
+  <button id="prev" type="button" aria-label="前月">‹</button>
+  <h2 id="month"></h2>
+  <button id="next" type="button" aria-label="翌月">›</button>
+  <button id="today" type="button">今日</button>
+</nav>
+
+<main>
+  <div class="weekdays"><span class="sun">日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span class="sat">土</span></div>
+  <div id="grid" class="grid"></div>
+  <p class="legend">☔ 傘必要　🌂 折りたたみ傘　❄ 雪　／　服装は日中の体感気温で判定　／　予報は16日先まで</p>
+  <p id="error" class="error" hidden></p>
+</main>
+
+<dialog id="detail"></dialog>
+
+<dialog id="settings">
+  <form method="dialog">
+    <h3>地域設定</h3>
+    <label>出発地</label>
+    <div class="search" data-target="origin">
+      <input type="search" placeholder="市区町村名（例：松戸市）">
+      <button type="button">検索</button>
+      <ul class="results"></ul>
+      <p class="chosen"></p>
+    </div>
+    <label>到着地（省略可）</label>
+    <div class="search" data-target="dest">
+      <input type="search" placeholder="市区町村名（例：千代田区）">
+      <button type="button">検索</button>
+      <button type="button" class="clear">なしにする</button>
+      <ul class="results"></ul>
+      <p class="chosen"></p>
+    </div>
+    <label>外にいる時間帯</label>
+    <p class="hours">
+      行き <select id="go0"></select> 〜 <select id="go1"></select> 時
+      帰り <select id="back0"></select> 〜 <select id="back1"></select> 時
+    </p>
+    <label>お気に入り</label>
+    <div id="favs" class="favs"></div>
+    <p class="actions">
+      <button type="button" id="add-fav">今の地域をお気に入りに追加</button>
+      <button type="button" id="reset">初期値に戻す</button>
+      <span class="spacer"></span>
+      <button type="button" id="cancel">キャンセル</button>
+      <button type="button" id="save" class="primary">保存</button>
+    </p>
+  </form>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
